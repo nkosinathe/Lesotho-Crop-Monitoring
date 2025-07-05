@@ -1,0 +1,12 @@
+streamlit
+geopandas
+geemap
+earthengine-api
+joblib
+tensorflow
+scikit-learn
+rasterio
+shapely
+numpy
+pandas
+ee
