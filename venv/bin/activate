@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=$(cygpath "C:\Users\NKOSINATHE LEOTLA\OneDrive\Desktop\Lesotho-Crop-Monitoring\venv")
+VIRTUAL_ENV=$(cygpath "C:\Users\NKOSINATHE LEOTLA\Lesotho-Crop-Monitoring\venv")
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
