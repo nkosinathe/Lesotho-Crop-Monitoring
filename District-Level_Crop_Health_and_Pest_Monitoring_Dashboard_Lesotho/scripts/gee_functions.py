@@ -1,4 +1,4 @@
-import ee  # type: ignore
+import ee
 
 ee.Initialize(project='winged-tenure-464005-p9')
 
@@ -18,13 +18,14 @@ def get_ndvi(start_date, end_date, roi=roi):
         .filterDate(start_date, end_date) \
         .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) \
         .map(lambda img: img.normalizedDifference(['B8', 'B4']).rename('NDVI'))
+
     return collection.median().clip(roi)
 
 def get_soil_moisture(start_date, end_date, roi=roi):
-    sm = ee.ImageCollection('NASA_USDA/HSL/SMAP10KM_soil_moisture') \
+    sm = ee.ImageCollection('NASA/FLDAS/NOAH01/C/GL/M') \
         .filterBounds(roi) \
         .filterDate(start_date, end_date) \
-        .select('ssm') \
+        .select('SoilMoi0_10cm_inst') \
         .mean().clip(roi)
     return sm
 
@@ -36,13 +37,18 @@ def get_precipitation(start_date, end_date, roi=roi):
         .sum().clip(roi)
     return chirps
 
-def get_temperature(start_date, end_date, roi=roi):
-    temp = ee.ImageCollection('ECMWF/ERA5_LAND/HOURLY') \
-        .filterBounds(roi) \
+
+def get_land_surface_temperature(start_date, end_date, roi=roi):
+    lst = ee.ImageCollection("MODIS/006/MOD11A2") \
         .filterDate(start_date, end_date) \
-        .select('temperature_2m') \
-        .mean().clip(roi)
-    return temp
+        .filterBounds(roi) \
+        .select("LST_Day_1km") \
+        .mean() \
+        .multiply(0.02) \
+        .subtract(273.15) \
+        .clip(roi)  # Convert from Kelvin to Celsius
+    return lst
+
 
 def get_humidity(start_date, end_date, roi=roi):
     humidity = ee.ImageCollection('ECMWF/ERA5_LAND/HOURLY') \
@@ -92,3 +98,15 @@ def get_evapotranspiration(start_date, end_date, roi=roi):
         .select('ET') \
         .mean().clip(roi)
     return et
+
+
+def get_soil_nitrogen(roi):
+    return ee.Image("projects/soilgrids-isric/ntd_mean").clip(roi)
+
+def get_soil_phosphorus(roi):
+    return ee.Image("projects/soilgrids-isric/phh1_mean").clip(roi)
+
+def get_soil_potassium(roi):
+    # SoilGrids does not provide K directly; use CEC as proxy for K-holding capacity
+    return ee.Image("projects/soilgrids-isric/cec_mean").clip(roi)
+
