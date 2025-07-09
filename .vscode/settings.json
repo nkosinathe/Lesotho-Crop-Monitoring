@@ -4,8 +4,10 @@
         "isric",
         "ndvi",
         "precip",
+        "PYTHONHOME",
         "selectbox",
         "soilgrids",
-        "SWIR"
+        "SWIR",
+        "venv"
     ]
 }
