@@ -3,6 +3,8 @@
         "FLDAS",
         "isric",
         "ndvi",
+        "precip",
+        "selectbox",
         "soilgrids",
         "SWIR"
     ]

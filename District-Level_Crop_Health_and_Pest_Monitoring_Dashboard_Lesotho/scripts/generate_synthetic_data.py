@@ -27,10 +27,12 @@ def generate_sample(label):
             'label': label
         }
 
+# Generate dataset
 samples = [generate_sample(np.random.choice([0, 1], p=[0.6, 0.4])) for _ in range(n_samples)]
 df = pd.DataFrame(samples)
 df['ndvi'] = df['ndvi'].clip(0, 1)
 
+# Save to file
 os.makedirs("data", exist_ok=True)
 df.to_csv("data/disease_training.csv", index=False)
 print("✅ Synthetic dataset saved to data/disease_training.csv")
