@@ -6,7 +6,7 @@ np.random.seed(42)
 n_samples = 1000
 
 def generate_sample(label):
-    if label == 0:  # Healthy
+    if label == 0:  # Healthy crops
         return {
             'b5': np.random.normal(1400, 100),
             'b6': np.random.normal(1600, 100),
@@ -16,7 +16,7 @@ def generate_sample(label):
             'ndvi': np.random.normal(0.7, 0.05),
             'label': label
         }
-    else:  # Diseased
+    else:  # Diseased crops
         return {
             'b5': np.random.normal(1100, 100),
             'b6': np.random.normal(1300, 100),
