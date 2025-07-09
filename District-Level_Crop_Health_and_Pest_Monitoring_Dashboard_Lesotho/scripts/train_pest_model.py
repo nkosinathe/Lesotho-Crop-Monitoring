@@ -1,10 +1,10 @@
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
-import joblib
-import os
+import numpy as np # type: ignore
+import pandas as pd # type: ignore
+from sklearn.ensemble import RandomForestClassifier # type: ignore
+from sklearn.model_selection import train_test_split # type: ignore
+from sklearn.metrics import classification_report, accuracy_score # type: ignore
+import joblib # type: ignore
+import os # type: ignore
 
 # 1. Generate synthetic data
 np.random.seed(42)

@@ -1,4 +1,4 @@
-import ee
+import ee # type: ignore
 
 ee.Initialize(project='winged-tenure-464005-p9')
 

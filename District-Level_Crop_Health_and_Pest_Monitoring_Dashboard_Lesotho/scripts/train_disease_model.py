@@ -1,9 +1,9 @@
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import joblib
-import os
+import pandas as pd # type: ignore
+from sklearn.ensemble import RandomForestClassifier # type: ignore
+from sklearn.model_selection import train_test_split # type: ignore
+from sklearn.metrics import classification_report # type: ignore
+import joblib # type: ignore
+import os # type: ignore
 
 # Load data
 df = pd.read_csv("data/disease_training.csv")

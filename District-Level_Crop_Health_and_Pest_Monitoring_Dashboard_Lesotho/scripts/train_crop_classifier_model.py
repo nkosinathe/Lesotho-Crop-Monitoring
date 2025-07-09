@@ -1,10 +1,10 @@
-import pandas as pd
-import geopandas as gpd
-from shapely.geometry import Point
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import joblib
+import pandas as pd # type: ignore
+import geopandas as gpd # type: ignore
+from shapely.geometry import Point # type: ignore
+from sklearn.ensemble import RandomForestClassifier # type: ignore
+from sklearn.model_selection import train_test_split # type: ignore
+from sklearn.metrics import classification_report # type: ignore
+import joblib # type: ignore
 
 # === STEP 1: Load Labeled Field Data ===
 # Assumed format: CSV with lat, lon, label (0=crop, 1=weed), plus optional metadata
